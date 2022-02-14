@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<style></style>
+
+<body>
+  <div>
+
+    <h2 id="total">
+      <!--Show cart total ONLY here-->
+    </h2>
+
+  </div>
+  <div id="cart">
+    <!--Show dishes added to cart here-->
+    <!-- add an remove button to each dish so that you can remove that dish from cart, give it HTML id as 'remove' -->
+    <table>
+      <thead id="carttable">
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>price</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</body>
+
+</html>
+<script>
+ var cart = JSON.parse(localStorage.getItem("cart"))
+  displayCart(cart);
+
+
+  function displayCart(cart) {
+    document.querySelector("tbody").textContent = ""
+    cart.map(function (data, index) {
+      var tr = document.createElement("tr");
+
+
+      var td1 = document.createElement("td");
+      var img = document.createElement("img");
+      img.setAttribute("src", data.image);
+      td1.append(img);
+
+      var td2 = document.createElement("td");
+      td2.textContent = data.name;
+
+      var td3 = document.createElement("td");
+      td3.textContent = "RS" + " " + data.price;
+
+      var td4 = document.createElement("td");
+      td4.innerHTML = "Remove";
+      td4.addEventListener("click", function () {
+        deleteItem(index)
+      })
+    })
+  }
+
+  function deleteItem(index){
+    cart.splice(index,1);
+    localstroge.setItem("cart",JSON.stringify(cart))
+    displayCart(cart)
+    }
+  
+</script>

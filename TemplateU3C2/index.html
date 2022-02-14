@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home</title>
+<style>
+  #navbar {
+      width: 90%;
+      margin: auto;
+      border: 1px solid black;
+
+    }
+
+    #menu1 {
+      display: flex;
+      width: 50%;
+      justify-content: space-around;
+
+    }
+    #menu{
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      grid-template-rows: repeat(3,400px);
+      grid-gap: 10px;
+      width: 80%;
+      margin: auto;
+    }
+    #div1{
+      width: 100%;
+      height: 300px;
+    }
+    #image{
+      width:100%;
+      height: 200px;
+    }
+</style>
+  
+</head>
+
+<body>
+  <div id="navbar">
+    <!--Add menu divs here-->
+
+    <div id="menu1">
+      <h3>Login</h3>
+      <h3>Sign Up</h3>
+      <h3>Menu</h3>
+    </div>
+
+
+
+
+
+    <div id="count"><a href="cart.html">Cart value:</a></div>
+  </div>
+
+  <div id="menu">
+
+    <!--Show indian dishes here in grid format-->
+    <!-- add an add to cart button to each dish, give it HTML id as 'addtocart' -->
+
+  </div>
+</body>
+
+</html>
+<script>
+   var dishes = [
+    {
+      name: "Baingan Bharta",
+      image: "https:\/\/www.themealdb.com\/images\/media\/meals\/urtpqw1487341253.jpg",
+      price: "50",
+
+    },
+    {
+      name: "Chicken Handi",
+      image: "https:\/\/www.themealdb.com\/images\/media\/meals\/wyxwsp1486979827.jpg",
+      price: "100",
+
+    },
+    {
+      name: "Dal fry",
+      image: "https:\/\/www.themealdb.com\/images\/media\/meals\/wuxrtu1483564410.jpg",
+      price: "450",
+
+    },
+    {
+      name: "Kidney Bean Curry",
+      image: "https:\/\/www.themealdb.com\/images\/media\/meals\/sywrsu1511463066.jpg",
+      price: "170",
+
+    },
+    {
+      name: "Lamb Biryani",
+      image: "https:\/\/www.themealdb.com\/images\/media\/meals\/xrttsx1487339558.jpg",
+      price: "30",
+
+    },
+    {
+      name: "Lamb Rogan josh",
+      image: "https:\/\/www.themealdb.com\/images\/media\/meals\/vvstvq1487342592.jpg",
+      price: "350",
+
+    },
+    {
+      name: "Matar Paneer",
+      image: "https:\/\/www.themealdb.com\/images\/media\/meals\/xxpqsy1511452222.jpg",
+      price: "70",
+
+    },
+    {
+      name: "Nutty Chicken Curry",
+      image: "https:\/\/www.themealdb.com\/images\/media\/meals\/yxsurp1511304301.jpg",
+      price: "100",
+
+    },
+    {
+      name: "Recheado Masala Fish",
+      image: "https:\/\/www.themealdb.com\/images\/media\/meals\/uwxusv1487344500.jpg",
+      price: "120",
+
+    },
+    {
+      name: "Smoked Haddock Kedgeree",
+      image: "https:\/\/www.themealdb.com\/images\/media\/meals\/1550441275.jpg",
+      price: "290",
+
+    },
+    {
+      name: "Tandoori chicken",
+      image: "https:\/\/www.themealdb.com\/images\/media\/meals\/qptpvt1487339892.jpg",
+      price: "110",
+
+    },
+  ];
+
+localStorage.setItem("Dishes",JSON.stringify(dishes))
+var Arr=JSON.parse(localStorage.getItem("cart"))||[];
+
+
+
+dishes.map(function(data){
+  var div1=document.createElement("div");
+  div1.setAttribute("id","div1")
+
+  var imag=document.createElement("img");
+  imag.setAttribute("src", data.image);
+  imag.setAttribute("id","image")
+
+
+  var Name=document.createElement("p");
+  Name.textContent=data.name;
+
+  var Price=document.createElement("p");
+  Price.textContent= data.price;
+
+
+
+  var but=document.createElement("button");
+  but.textContent="Add to cart";
+  but.addEventListener("click", function(){
+    countFun(data);
+  })
+
+  div1.append(imag,Name,Price,but);
+
+  document.querySelector("#menu").append(div1);
+});
+
+
+
+
+function countFun(data){
+Arr.push(data);
+localStorage.setItem("cart",JSON.stringify(Arr))
+alert("successfull")
+ 
+};
+
+</script>
